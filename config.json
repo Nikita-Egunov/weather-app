@@ -1,0 +1,51 @@
+{
+  "API_KEY": "6ebb07e520a349d5a17124301252204",
+  "YANDEX_MAP_API_KEY": "04b7c896-25a2-47f7-9dcd-b8890333718e",
+  "months": {
+    "01": "january",
+    "02": "february",
+    "03": "march",
+    "04": "april",
+    "05": "may",
+    "06": "june",
+    "07": "july",
+    "08": "august",
+    "09": "september",
+    "10": "october",
+    "11": "november",
+    "12": "december"
+  },
+  "monthsRevers": {
+    "jan": "01",
+    "feb": "02",
+    "mar": "03",
+    "apr": "04",
+    "may": "05",
+    "jun": "06",
+    "jul": "07",
+    "aug": "08",
+    "sep": "09",
+    "oct": "10",
+    "nov": "11",
+    "dec": "12"
+  },
+  "daysInMonth": {
+    "01": "31",
+    "02": "28",
+    "03": "31",
+    "04": "30",
+    "05": "31",
+    "06": "30",
+    "07": "31",
+    "08": "31",
+    "09": "30",
+    "10": "31",
+    "11": "30",
+    "12": "31"
+  },
+  "app_routes": {
+    "main": "/",
+    "weatherReport": "/weatherReport",
+    "notFound": "*"
+  }
+}

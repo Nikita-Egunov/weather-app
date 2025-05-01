@@ -1,0 +1,103 @@
+@import "tailwindcss";
+@plugin 'tailwind-scrollbar' {
+  nocompatible: true;
+}
+
+@font-face {
+  font-family: "Overpass";
+  src: url("/public/fonts/Overpass/static/Overpass-Regular.ttf") format("woff2");
+  font-style: Regular;
+}
+
+@font-face {
+  font-family: "Overpass";
+  src: url("/public/fonts/Overpass/static/Overpass-Bold.ttf") format("woff2");
+  font-style: Bold;
+}
+
+@font-face {
+  font-family: "Overpass";
+  src: url("/public/fonts/Overpass/static/Overpass-Black.ttf") format("woff2");
+  font-style: Black;
+}
+
+@font-face {
+  font-family: "Raleway";
+  src: url("/public/fonts/Raleway/static/Raleway-Light.ttf") format("woff2");
+  font-style: Light;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("/public/fonts/Montserrat/static/Montserrat-Medium.ttf")
+    format("woff2");
+  font-style: Medium;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("/public/fonts/Montserrat/static/Montserrat-ExtraBold.ttf")
+    format("woff2");
+  font-style: ExtraBold;
+}
+
+@font-face {
+  font-family: "Overpass";
+  src: url("/public/fonts/Overpass/static/Overpass-Light.ttf") format("woff2");
+  font-style: Light;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("/public/fonts/Montserrat/static/Montserrat-Bold.ttf")
+    format("woff2");
+  font-style: Bold;
+}
+
+@font-face {
+  font-family: "Overpass";
+  src: url("/public/fonts/Overpass/static/Overpass-Regular.ttf") format("woff2");
+  font-style: SemiBold;
+}
+
+@theme {
+  --color-blue1: #fff;
+  --font-overpass: "Overpass", sans-serif;
+  --font-montserrat: "Montserrat", sans-serif;
+  --font-raleway: "Raleway", sans-serif;
+  --color-blur: rgba(255, 255, 255, 0.3);
+
+  --animate-error : animation-error 1s cubic-bezier(0.42, 0, 1, 1) infinite;
+
+  @keyframes animation-error {
+    0%,
+    100% {
+      transform: translateX(0);
+    }
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+      transform: translateX(-5px);
+    }
+    20%,
+    40%,
+    60%,
+    80% {
+      transform: translateX(5px);
+    }
+  }
+}
+
+@layer utilities {
+  .text-shadow-sm {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  }
+  .text-shadow {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+  .text-shadow-lg {
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+  }
+}
