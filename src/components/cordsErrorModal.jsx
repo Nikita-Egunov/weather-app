@@ -43,16 +43,6 @@ function CordsErrorModal() {
               или выберите точку на карте
             </p>
             <button
-              onClick={() => {
-                getCords();
-              }}
-              className={`${
-                isAnimate && "animate-error"
-              } rounded-2xl p-2.5 bg-cyan-500 text-white block mx-auto mt-2.5`}
-            >
-              Запросить геопозицию ещё раз
-            </button>
-            <button
               onClick={() => setIsLocalModalOpen(true)}
               className="border-dotted border border-cyan-500 text-cyan-500 block mx-auto p-2.5 rounded-2xl mt-2.5"
             >

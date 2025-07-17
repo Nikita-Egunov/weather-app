@@ -8,7 +8,7 @@ import CordsErrorModal from "../../components/cordsErrorModal";
 
 export function MainPage({ classes }) {
   return (
-    <>
+    <div className="flex flex-col justify-between">
       <Header />
       <main className={classes}>
         <WeatherIcon weatherCode={1} />
@@ -33,7 +33,7 @@ export function MainPage({ classes }) {
         </NavLink>
       </main>
       <CordsErrorModal/>
-    </>
+    </div>
   );
 }
 

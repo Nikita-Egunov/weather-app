@@ -2,7 +2,7 @@ import CONFIG from "../config.json";
 import { YMaps } from "@pbe/react-yandex-maps";
 import MainPage from "./pages/main/main-page";
 import { CordsContext } from "./contexts/cordsContext";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
 import { PlacemarkContext } from "./contexts/placemarkContext";
 import { WeatherDataContext } from "./contexts/weatherDataContext";
 import { Route, Routes } from "react-router";
@@ -13,6 +13,8 @@ import { useLocalStorage } from "./hooks/useLocalStorage";
 import { isGeoErrorContext } from "/src/contexts/isGeoErrorContext.js";
 import { useNavigateCoords } from "./hooks/useNavigateCoords";
 import { LocalModalContext } from "./contexts/localModalContext";
+import getWeatherData from "./helpers/getWeatherData";
+import { WeatherProviderContext } from "./contexts/weatherProviderContext";
 
 export function App() {
   const [coords, setCoords] = useState(null);
@@ -31,6 +33,7 @@ export function App() {
   const getCords = useNavigateCoords();
   const [isLocalModalOpen, setIsLocalModalOpen] = useState(false);
 
+
   useEffect(() => {
     const getCoords = useNavigateCoords();
     const fetchLocation = async () => {
@@ -41,10 +44,10 @@ export function App() {
         setIsCordsError(true);
       }
     };
-    
+
     fetchLocation();
   }, []);
-  
+
   const fetchWeatherData = async () => {
     await get(
       `/forecast.json?key=${CONFIG.API_KEY}&q=${coords.join(",")}&days=7`
@@ -52,28 +55,7 @@ export function App() {
   };
 
   useEffect(() => {
-    if (isCordsError) return; //Если есть ошибка по координатам ничего не делаем
-    if (!coords) return; // Если координаты ещё не загружены, ничего не делаем
-
-    const prevCoords = prevCoordsRef.current;
-    const areCoordsEqual =
-      prevCoords && coords[0] === prevCoords[0] && coords[1] === prevCoords[1];
-
-    if (areCoordsEqual) return; // сравнение текущих координат и определённых ранее
-
-    try {
-      // ищем данные в localStorage
-      const item = localStorage.getItem(coords);
-      if (item) {
-        const storageWeatherData = JSON.parse(item);
-        setWeatherData(storageWeatherData); // сохраняем в localStorage (кастомный хук)
-        return;
-      }
-    } catch (error) {}
-    fetchWeatherData(); // если все проверки пройдены,запрашиваем данные с сервера
-    console.log(isCordsError);
-    
-    prevCoordsRef.current = coords; // Обновляем предыдущие координаты
+    getWeatherData(weatherProviderValue)
   }, [coords, isCordsError]);
 
   useEffect(() => {
@@ -81,7 +63,7 @@ export function App() {
 
     if (coords) {
       setIsCordsError(false);
-    } 
+    }
   }, [coords]);
 
   useEffect(() => {
@@ -90,6 +72,15 @@ export function App() {
     setLocalStorageCords(data, [prevCoordsRef.current]);
     console.log(data, "data");
   }, [data]);
+
+  const weatherProviderValue = {
+    coords,
+    fetchWeatherData,
+    isCordsError,
+    prevCoordsRef,
+    setWeatherData,
+  }
+  
 
   return (
     <YMaps
@@ -110,21 +101,23 @@ export function App() {
                 <LocalModalContext.Provider
                   value={{ isLocalModalOpen, setIsLocalModalOpen }}
                 >
-                  <Routes>
-                    <Route
-                      // path={CONFIG.app_routes.main}
-                      index
-                      element={<MainPage classes={"pb-6 relative"} />}
-                    />
-                    <Route
-                      path={CONFIG.app_routes.weatherReport}
-                      element={<WeatherReportPage />}
-                    />
-                    <Route
-                      path={CONFIG.app_routes.notFound}
-                      element={<Page404 />}
-                    />
-                  </Routes>
+                  <WeatherProviderContext.Provider value={weatherProviderValue}>
+                    <Routes>
+                      <Route
+                        // path={CONFIG.app_routes.main}
+                        index
+                        element={<MainPage classes={"pb-6 relative"} />}
+                      />
+                      <Route
+                        path={CONFIG.app_routes.weatherReport}
+                        element={<WeatherReportPage />}
+                      />
+                      <Route
+                        path={CONFIG.app_routes.notFound}
+                        element={<Page404 />}
+                      />
+                    </Routes>
+                  </WeatherProviderContext.Provider>
                 </LocalModalContext.Provider>
               </isGeoErrorContext.Provider>
             </PlacemarkContext.Provider>
