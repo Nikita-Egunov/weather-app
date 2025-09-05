@@ -5,58 +5,58 @@
 
 @font-face {
   font-family: "Overpass";
-  src: url("/public/fonts/Overpass/static/Overpass-Regular.ttf") format("woff2");
+  src: url("/fonts/Overpass/static/Overpass-Regular.ttf") format("woff2");
   font-style: Regular;
 }
 
 @font-face {
   font-family: "Overpass";
-  src: url("/public/fonts/Overpass/static/Overpass-Bold.ttf") format("woff2");
+  src: url("/fonts/Overpass/static/Overpass-Bold.ttf") format("woff2");
   font-style: Bold;
 }
 
 @font-face {
   font-family: "Overpass";
-  src: url("/public/fonts/Overpass/static/Overpass-Black.ttf") format("woff2");
+  src: url("/fonts/Overpass/static/Overpass-Black.ttf") format("woff2");
   font-style: Black;
 }
 
 @font-face {
   font-family: "Raleway";
-  src: url("/public/fonts/Raleway/static/Raleway-Light.ttf") format("woff2");
+  src: url("/fonts/Raleway/static/Raleway-Light.ttf") format("woff2");
   font-style: Light;
 }
 
 @font-face {
   font-family: "Montserrat";
-  src: url("/public/fonts/Montserrat/static/Montserrat-Medium.ttf")
+  src: url("/fonts/Montserrat/static/Montserrat-Medium.ttf")
     format("woff2");
   font-style: Medium;
 }
 
 @font-face {
   font-family: "Montserrat";
-  src: url("/public/fonts/Montserrat/static/Montserrat-ExtraBold.ttf")
+  src: url("/fonts/Montserrat/static/Montserrat-ExtraBold.ttf")
     format("woff2");
   font-style: ExtraBold;
 }
 
 @font-face {
   font-family: "Overpass";
-  src: url("/public/fonts/Overpass/static/Overpass-Light.ttf") format("woff2");
+  src: url("/fonts/Overpass/static/Overpass-Light.ttf") format("woff2");
   font-style: Light;
 }
 
 @font-face {
   font-family: "Montserrat";
-  src: url("/public/fonts/Montserrat/static/Montserrat-Bold.ttf")
+  src: url("/fonts/Montserrat/static/Montserrat-Bold.ttf")
     format("woff2");
   font-style: Bold;
 }
 
 @font-face {
   font-family: "Overpass";
-  src: url("/public/fonts/Overpass/static/Overpass-Regular.ttf") format("woff2");
+  src: url("/fonts/Overpass/static/Overpass-Regular.ttf") format("woff2");
   font-style: SemiBold;
 }
 
