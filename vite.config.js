@@ -38,6 +38,7 @@ export default defineConfig({
       },
     },
   },
+  base: '/weather-app/'
 });
 
 // npm i terser
