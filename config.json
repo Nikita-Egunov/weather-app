@@ -44,8 +44,8 @@
     "12": "31"
   },
   "app_routes": {
-    "main": "/weather-app/",
-    "weatherReport": "/weather-app/weatherReport/",
+    "main": "https://nikita-egunov.github.io/weather-app/",
+    "weatherReport": "https://nikita-egunov.github.io/weather-app/weatherReport/",
     "notFound": "*"
   }
 }
