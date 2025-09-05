@@ -3,10 +3,27 @@ import rain from "/public/svg/raini-b.svg";
 import windy from "/public/svg/windy-b.svg";
 import { useState } from "react";
 
+/**
+ * Компонент аккордеона уведомления с возможностью раскрытия/закрытия содержимого.
+ * Отображает информацию о погоде, времени и текстовое сообщение.
+ *
+ * @param {Object} props - Входные свойства компонента.
+ * @param {boolean} props.isNew - Флаг, определяющий статус "новое" уведомление.
+ * @param {string} props.text - Основной текст уведомления.
+ * @param {string} props.time - Время уведомления.
+ * @param {number} props.weatherCod - Код погоды (1 - солнце, 2 - дождь, 3 - ветер).
+ * @param {string} props.accarderonText - Дополнительный текст, отображаемый при раскрытии.
+ *
+ * @returns {JSX.Element} JSX-элемент аккордеона.
+ */
 function NotifAccardeon({ isNew, text, time, weatherCod, accarderonText }) {
   const [isOpen, setIsOpen] = useState(false);
   let weather = undefined;
   let alt = undefined;
+
+  /**
+   * Определяет изображение и альтернативный текст в зависимости от кода погоды.
+   */
   switch (weatherCod) {
     case 1:
       weather = sun;
@@ -23,12 +40,12 @@ function NotifAccardeon({ isNew, text, time, weatherCod, accarderonText }) {
     default:
       break;
   }
+
   return (
     <>
       <div
-        className={`py-2.5 px-5 cursor-pointer flex items-center gap-4 text-slate-400 ${
-          isNew ? "bg-[rgba(149,229,255,0.28)] text-slate-600" : ""
-        }`}
+        className={`py-2.5 px-5 cursor-pointer flex items-center gap-4 text-slate-400 ${isNew ? "bg-[rgba(149,229,255,0.28)] text-slate-600" : ""
+          }`}
         onClick={() => {
           setIsOpen(isOpen ? false : true);
         }}

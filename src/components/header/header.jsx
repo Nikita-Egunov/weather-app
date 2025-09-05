@@ -1,31 +1,30 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import LocationBtn from "./components/location-btn";
-import NotifBtn from "./components/notif-btn";
-import NotifModal from "./components/modals/notif-modal";
 import LocalModal from "./components/modals/local-modal";
 import { LocalModalContext } from "../../contexts/localModalContext";
 
+/**
+ * Компонент верхнего заголовка приложения.
+ * Содержит кнопку выбора местоположения и модальное окно карты.
+ *
+ * @returns {JSX.Element} JSX-элемент заголовка с кнопкой и модальным окном.
+ */
 function Header() {
-  // const [isNotifModalOpen, setIsNotifModalOpen] = useState(false);
-  const {isLocalModalOpen, setIsLocalModalOpen} = useContext(LocalModalContext)
-  const hasNotification = true;
+  const { isLocalModalOpen, setIsLocalModalOpen } = useContext(LocalModalContext);
+
   return (
     <header className="flex justify-between pt-10">
+      {/* Кнопка выбора местоположения */}
       <LocationBtn handelClick={() => setIsLocalModalOpen(true)} />
+
+      {/* Модальное окно карты */}
       <LocalModal
         isOpen={isLocalModalOpen}
         onClose={() => setIsLocalModalOpen(false)}
       />
-      {/* <NotifBtn
-        hasNotification={hasNotification}
-        handelClick={() => setIsNotifModalOpen(true)}
-      />
-      <NotifModal
-        isOpen={isNotifModalOpen}
-        onClose={() => setIsNotifModalOpen(false)}
-      /> */}
     </header>
   );
 }
+
 
 export default Header;

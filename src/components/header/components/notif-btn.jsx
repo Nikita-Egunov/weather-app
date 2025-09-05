@@ -1,9 +1,24 @@
-function NotifBtn({ hasNotification, handelClick}) {
+/**
+ * Компонент кнопки уведомлений с индикатором наличия новых сообщений.
+ * Отображает SVG-иконку и красную точку при наличии активных уведомлений.
+ *
+ * @param {Object} props - Входные свойства компонента.
+ * @param {boolean} props.hasNotification - Флаг наличия новых уведомлений.
+ * @param {Function} props.handelClick - Callback-функция для обработки клика по кнопке.
+ *
+ * @returns {JSX.Element} JSX-элемент кнопки с иконкой и индикатором уведомлений.
+ */
+function NotifBtn({ hasNotification, handelClick }) {
   return (
     <button onClick={handelClick} className="relative cursor-pointer">
-      {hasNotification && <span 
-      className="absolute top-[20%] right-0.5 rounded-full bg-red-400 h-1.5 block aspect-square z-10"
-      ></span>}
+      {/* Индикатор новых уведомлений */}
+      {hasNotification && (
+        <span
+          className="absolute top-[20%] right-0.5 rounded-full bg-red-400 h-1.5 block aspect-square z-10"
+        ></span>
+      )}
+
+      {/* Иконка уведомлений */}
       <svg
         width="18"
         height="18"
@@ -31,5 +46,6 @@ function NotifBtn({ hasNotification, handelClick}) {
     </button>
   );
 }
+
 
 export default NotifBtn;

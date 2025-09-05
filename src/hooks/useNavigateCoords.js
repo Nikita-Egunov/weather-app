@@ -3,23 +3,19 @@ export function useNavigateCoords() {
     if (!("geolocation" in navigator)) {
       throw new Error("Геолокация не поддерживается");
     }
-    
-    try {
-      const position = await new Promise((resolve, reject) => {
-        navigator.geolocation.getCurrentPosition(resolve, reject, {
-          enableHighAccuracy: true,
-          timeout: 10000
-        });
+
+    const position = await new Promise((resolve, reject) => {
+      navigator.geolocation.getCurrentPosition(resolve, reject, {
+        enableHighAccuracy: true,
+        timeout: 10000
       });
-      
-      return {
-        latitude: position.coords.latitude,
-        longitude: position.coords.longitude
-      };
-    } catch (error) {
-      throw error;
-    }
+    });
+
+    return {
+      latitude: position.coords.latitude,
+      longitude: position.coords.longitude
+    };
   };
-  
+
   return fetchCoords;
 }

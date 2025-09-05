@@ -1,8 +1,20 @@
+/**
+ * Компонент универсальной кнопки с текстом и иконкой.
+ * Использует базовые стили с возможностью расширения через параметр classes.
+ *
+ * @param {Object} props - Входные свойства компонента.
+ * @param {string} props.text - Текст, отображаемый внутри кнопки.
+ * @param {string} [props.classes] - Дополнительные CSS-классы для кастомизации внешнего вида.
+ *
+ * @returns {JSX.Element} JSX-элемент кнопки с текстом и иконкой.
+ */
 function Button({ text, classes }) {
   return (
     <button
       className={
-        "text-slate-600 bg-white rounded-2xl py-3 px-5 flex items-center [box-shadow:inset_-4px_3px_3px_0_rgba(255,255,255,0.25),inset_1px_-2px_4px_0_rgba(0,0,0,0.25),-3px_6px_35px_3px_rgba(0,0,0,0.1)] cursor-pointer" + " " + classes
+        "text-slate-600 bg-white rounded-2xl py-3 px-5 flex items-center [box-shadow:inset_-4px_3px_3px_0_rgba(255,255,255,0.25),inset_1px_-2px_4px_0_rgba(0,0,0,0.25),-3px_6px_35px_3px_rgba(0,0,0,0.1)] cursor-pointer" +
+        " " +
+        classes
       }
     >
       {text}
@@ -21,5 +33,6 @@ function Button({ text, classes }) {
     </button>
   );
 }
+
 
 export default Button;

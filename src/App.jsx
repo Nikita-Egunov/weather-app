@@ -16,24 +16,36 @@ import { LocalModalContext } from "./contexts/localModalContext";
 import getWeatherData from "./helpers/getWeatherData";
 import { WeatherProviderContext } from "./contexts/weatherProviderContext";
 
+/**
+ * Основной компонент приложения. 
+ * Обрабатывает логику геолокации, загрузку данных о погоде, 
+ * работу с localStorage и предоставляет контекст для всех компонентов.
+ * Использует Яндекс Карты для отображения местоположения.
+ *
+ * @returns {JSX.Element} JSX-структура приложения с маршрутами и контекстами.
+ */
 export function App() {
+  // Состояние и ссылки для управления геокоординатами
   const [coords, setCoords] = useState(null);
-  const prevCoordsRef = useRef(null); // Храним предыдущие координаты
-  const [isPlacemarkVisible, setPlacemarkVisible] = useState(false);
-  const [weatherData, setWeatherData] = useState(null);
-  const { data, loading, error, get } = useApi("http://api.weatherapi.com/v1");
+  const prevCoordsRef = useRef(null); // Хранение предыдущих координат для сравнения
+  const [isPlacemarkVisible, setPlacemarkVisible] = useState(false); // Отображение метки на карте
+  const [weatherData, setWeatherData] = useState(null); // Данные о погоде
+  const { data, get } = useApi("http://api.weatherapi.com/v1"); // Хук для работы с API погоды
   const [
     localStorageCords,
     setLocalStorageCords,
     removeLocalStorageCords,
     getLocalStorageCords,
     clear,
-  ] = useLocalStorage([], null);
-  const [isCordsError, setIsCordsError] = useState(false);
-  const getCords = useNavigateCoords();
-  const [isLocalModalOpen, setIsLocalModalOpen] = useState(false);
+  ] = useLocalStorage([], null); // Хук для работы с localStorage
+  const [isCordsError, setIsCordsError] = useState(false); // Флаг ошибки геолокации
+  const [isLocalModalOpen, setIsLocalModalOpen] = useState(false); // Состояние модального окна карты
 
-
+  /**
+   * Эффект для получения геокоординат пользователя.
+   * Использует кастомный хук useNavigateCoords().
+   * При ошибке устанавливает флаг isCordsError.
+   */
   useEffect(() => {
     const getCoords = useNavigateCoords();
     const fetchLocation = async () => {
@@ -48,16 +60,28 @@ export function App() {
     fetchLocation();
   }, []);
 
+  /**
+   * Функция для запроса данных о погоде к API.
+   * Использует текущие координаты для формирования URL.
+   */
   const fetchWeatherData = async () => {
     await get(
       `/forecast.json?key=${CONFIG.API_KEY}&q=${coords.join(",")}&days=7`
     );
   };
 
+  /**
+   * Эффект для получения данных о погоде.
+   * Вызывает getWeatherData при изменении координат или флага ошибки.
+   */
   useEffect(() => {
     getWeatherData(weatherProviderValue)
   }, [coords, isCordsError]);
 
+  /**
+   * Эффект для обновления состояния ошибки геолокации.
+   * Сбрасывает isCordsError при наличии новых координат.
+   */
   useEffect(() => {
     console.log(coords);
 
@@ -66,6 +90,10 @@ export function App() {
     }
   }, [coords]);
 
+  /**
+   * Эффект для обновления состояния данных о погоде.
+   * Сохраняет данные в localStorage при изменении.
+   */
   useEffect(() => {
     // Устанавливаем новое состояние данных, сохраняем в localStorage
     setWeatherData(data);
@@ -73,6 +101,7 @@ export function App() {
     console.log(data, "data");
   }, [data]);
 
+  // Объект для передачи данных через WeatherProviderContext
   const weatherProviderValue = {
     coords,
     fetchWeatherData,
@@ -80,7 +109,6 @@ export function App() {
     prevCoordsRef,
     setWeatherData,
   }
-  
 
   return (
     <YMaps
@@ -90,6 +118,7 @@ export function App() {
       }}
     >
       <div className="bg-gradient-to-br from-cyan-500 to-blue-500 font-overpass text-white px-5 h-full">
+        {/* Контексты для передачи данных между компонентами */}
         <CordsContext.Provider value={{ coords, setCoords }}>
           <WeatherDataContext.Provider value={{ setWeatherData, weatherData }}>
             <PlacemarkContext.Provider
@@ -102,9 +131,9 @@ export function App() {
                   value={{ isLocalModalOpen, setIsLocalModalOpen }}
                 >
                   <WeatherProviderContext.Provider value={weatherProviderValue}>
+                    {/* Маршруты приложения */}
                     <Routes>
                       <Route
-                        // path={CONFIG.app_routes.main}
                         index
                         element={<MainPage classes={"pb-6 relative"} />}
                       />
@@ -127,5 +156,6 @@ export function App() {
     </YMaps>
   );
 }
+
 
 export default App;
