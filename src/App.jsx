@@ -15,6 +15,7 @@ import { useNavigateCoords } from "./hooks/useNavigateCoords";
 import { LocalModalContext } from "./contexts/localModalContext";
 import getWeatherData from "./helpers/getWeatherData";
 import { WeatherProviderContext } from "./contexts/weatherProviderContext";
+import { useLocation } from 'react-router-dom';
 
 /**
  * Основной компонент приложения. 
@@ -109,6 +110,12 @@ export function App() {
     prevCoordsRef,
     setWeatherData,
   }
+    const location = useLocation();
+
+  useEffect(() => {
+    console.log('Current path:', location.pathname);
+    console.log('Expected basename:', '/weather-app');
+  }, [location]);
 
   return (
     <YMaps
