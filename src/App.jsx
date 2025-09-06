@@ -15,7 +15,7 @@ import { useNavigateCoords } from "./hooks/useNavigateCoords";
 import { LocalModalContext } from "./contexts/localModalContext";
 import getWeatherData from "./helpers/getWeatherData";
 import { WeatherProviderContext } from "./contexts/weatherProviderContext";
-import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router';
 
 /**
  * Основной компонент приложения. 
