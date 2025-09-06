@@ -2,6 +2,7 @@ import { NavLink } from "react-router";
 import WeatherCard from "./weather-card";
 import Louder from "/src/components/louder";
 import CONFIG from "/config.json";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 /**
  * Компонент отображения прогноза погоды по часам.

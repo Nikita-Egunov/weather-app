@@ -124,7 +124,7 @@ export function App() {
         lang: "ru_RU",
       }}
     >
-      <div className="bg-gradient-to-br from-cyan-500 to-blue-500 font-overpass text-white px-5 h-full">
+      <div className="bg-gradient-to-br from-cyan-500 to-blue-500 font-overpass text-white px-5 h-full min-h-screen">
         {/* Контексты для передачи данных между компонентами */}
         <CordsContext.Provider value={{ coords, setCoords }}>
           <WeatherDataContext.Provider value={{ setWeatherData, weatherData }}>
