@@ -31,7 +31,7 @@ export function App() {
   const prevCoordsRef = useRef(null); // Хранение предыдущих координат для сравнения
   const [isPlacemarkVisible, setPlacemarkVisible] = useState(false); // Отображение метки на карте
   const [weatherData, setWeatherData] = useState(null); // Данные о погоде
-  const { data, get } = useApi("http://api.weatherapi.com/v1"); // Хук для работы с API погоды
+  const { data, get } = useApi("https://api.weatherapi.com/v1"); // Хук для работы с API погоды
   const [
     localStorageCords,
     setLocalStorageCords,
