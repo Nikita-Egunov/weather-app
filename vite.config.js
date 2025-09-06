@@ -33,9 +33,6 @@ export default defineConfig({
       format: {
         comments: false, // Удалить все комментарии
       },
-      mangle: {
-        toplevel: true, // Сокращать имена переменных и функций
-      },
     },
   },
   base: '/weather-app/'
