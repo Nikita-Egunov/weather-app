@@ -101,3 +101,10 @@
     text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
   }
 }
+
+
+@layer base {
+  body {
+    @apply bg-[#141414] text-white;
+  }
+}
